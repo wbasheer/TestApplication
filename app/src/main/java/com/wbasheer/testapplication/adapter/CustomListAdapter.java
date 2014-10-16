@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.wbasheer.testapplication.AppController;
 import com.wbasheer.testapplication.R;
 import com.wbasheer.testapplication.model.Image;
 
@@ -18,6 +21,7 @@ public class CustomListAdapter extends BaseAdapter {
     private Activity activity;
 	private LayoutInflater inflater;
 	private List<Image> imageItems;
+    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
 	public CustomListAdapter(Activity activity, List<Image> imageItems) {
 		this.activity = activity;
@@ -43,24 +47,23 @@ public class CustomListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		if (inflater == null)
-			inflater = (LayoutInflater) activity
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
 		if (convertView == null)
 			convertView = inflater.inflate(R.layout.listitemlayout, null);
 
+        if (imageLoader == null)
+            imageLoader = AppController.getInstance().getImageLoader();
 
+        NetworkImageView thumbNail = (NetworkImageView) convertView.findViewById(R.id.imageView);
 		TextView imageTitle = (TextView) convertView.findViewById(R.id.titleTextView);
-		TextView imageName = (TextView) convertView.findViewById(R.id.nameTextView);
 
-		// getting movie data for the row
+		// getting image object for the row
 		Image i = imageItems.get(position);
 
-		// thumbnail image
-		//thumbNail.setImageUrl(i.getThumbnailUrl(), imageLoader);
+		// download thumbnail image
+		thumbNail.setImageUrl(AppController.imageUrlBase + i.getName(), imageLoader);
 
-        // image name
-        imageName.setText(i.getName());
-		
 		// image title
 		imageTitle.setText(i.getTitle());
 

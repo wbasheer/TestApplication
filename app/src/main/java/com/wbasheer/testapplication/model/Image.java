@@ -1,22 +1,19 @@
 package com.wbasheer.testapplication.model;
 
+import java.io.Serializable;
+
 /**
  * Created by waleed.basheer on 10/15/2014.
  */
-public class Image {
+public class Image implements Serializable {
 
     public static final String defaultImageName = "unknown_name";
     public static final String defaultImageTitle = "unknown_title";
     public static final String defaultImageDescription = "unknown_description";
 
-    private String thumbnailUrl;
     private String name;
     private String title;
     private String description;
-
-    public String getThumbnailUrl() {
-        return thumbnailUrl;
-    }
 
     public String getName() {
 
@@ -31,11 +28,6 @@ public class Image {
     public String getDescription() {
 
         return (description == null) ? defaultImageDescription : description;
-    }
-
-    public void setThumbnailUrl(String url) {
-
-        thumbnailUrl = url;
     }
 
     public void setName(String name) {
