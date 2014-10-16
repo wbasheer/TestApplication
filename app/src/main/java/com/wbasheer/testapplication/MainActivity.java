@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (AbsListView) findViewById(R.id.listView);
         adapter = new CustomListAdapter(this, images);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(listItemClickListener);
