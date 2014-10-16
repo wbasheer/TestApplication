@@ -41,6 +41,7 @@ public class ImageInfoActivity extends Activity {
             return;
 
 
+        imageThumbnail.setErrorImageResId(R.drawable.ic_launcher);
         // download thumbnail image
         if(image.getName() != null)
             imageThumbnail.setImageUrl(AppController.imageUrlBase + image.getName(), imageLoader);

@@ -62,6 +62,7 @@ public class CustomListAdapter extends BaseAdapter {
 		Image i = imageItems.get(position);
 
 		// download thumbnail image
+        thumbNail.setErrorImageResId(R.drawable.ic_launcher);
 		thumbNail.setImageUrl(AppController.imageUrlBase + i.getName(), imageLoader);
 
 		// image title
